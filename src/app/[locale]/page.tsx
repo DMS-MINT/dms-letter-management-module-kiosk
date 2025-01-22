@@ -1,9 +1,9 @@
-import { Metadata } from "next";
+import { type Metadata } from "next";
 
 import { getTranslations } from "next-intl/server";
 
 import { siteConfig } from "@/app";
-import LocaleSwitcher from "@/components/shared/DropDown/LocaleSwitcher";
+import SampleForm from "@/components/module/SampleForm";
 import { ModeToggle } from "@/components/ui/custom/modeToggle";
 
 export async function generateMetadata() {
@@ -24,10 +24,7 @@ export default function HomePage() {
 	return (
 		<div>
 			<ModeToggle />
-			<span className="flex items-center justify-center gap-2">
-				Language Toggle
-				<LocaleSwitcher inHamburger={true} />
-			</span>
+			<SampleForm />
 		</div>
 	);
 }
