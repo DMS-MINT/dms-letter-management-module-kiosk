@@ -1,9 +1,11 @@
 import { type Metadata } from "next";
+import { redirect } from "next/navigation";
 
 import { getTranslations } from "next-intl/server";
 
 import { siteConfig } from "@/app";
-import SampleForm from "@/components/module/SampleForm";
+import { LoginForm } from "@/components/screen/auth/LoginForm";
+// import SampleForm from "@/components/module/";
 import { ModeToggle } from "@/components/ui/custom/modeToggle";
 
 export async function generateMetadata() {
@@ -24,7 +26,16 @@ export default function HomePage() {
 	return (
 		<div>
 			<ModeToggle />
-			<SampleForm />
+			{/* <SampleForm /> */}
+			{/* <LoginForm /> */}
 		</div>
 	);
+	// redirect("/auth/sign-in");
 }
+// import { redirect } from "next/navigation";
+
+// // This page only renders when the app
+// // is built statically (output: "export")
+// export default function RootPage() {
+// 	redirect("/auth/sign-in");
+// }
