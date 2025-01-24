@@ -8,7 +8,7 @@ import axiosInstance from "@/actions/axiosInstance";
 
 import getErrorMessage from "../getErrorMessage";
 
-const SESSION_NAME = "DMS-ADMIN";
+const SESSION_NAME = "DMS-KIOSK";
 
 const secretKey = "secret";
 const key = new TextEncoder().encode(secretKey);
@@ -62,19 +62,9 @@ export async function signUp(credentials: ICredentials) {
 
 export async function signIn(credentials: ICredentials) {
 	try {
-		const response = await axiosInstance.post("auth/login/", credentials);
-
-		// Access the Tenants
-		const tenants = response.data?.tenants;
-		let domain = null;
-
-		// If tenants exist, pick the primary domain
-		if (tenants && tenants.length > 0) {
-			const primaryDomain = tenants[0].domains.find((d: any) => d.is_primary);
-			domain = primaryDomain
-				? primaryDomain.domain
-				: tenants[0].domains[0].domain;
-		}
+		console.log("credentials", credentials);
+		const response = await axiosInstance.post("auth/kiosklogin/", credentials);
+		console.log("response", response);
 
 		// Session data
 		const sessionId = response.data.session;
@@ -82,11 +72,8 @@ export async function signIn(credentials: ICredentials) {
 
 		// Encrypt session with or without tenants
 		let session;
-		if (tenants) {
-			session = await encrypt({ sessionId, expires, domain, tenants });
-		} else {
-			session = await encrypt({ sessionId, expires, domain });
-		}
+
+		session = await encrypt({ sessionId, expires });
 
 		// Set session cookie
 		cookies().set(SESSION_NAME, session, {

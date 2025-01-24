@@ -25,11 +25,11 @@ export default function SenderInfoStep({
 	return (
 		<form onSubmit={handleSubmit} className="space-y-8">
 			{/* Document Information */}
-			<h2 className="text-xl font-semibold shadow-md bg-slate-200 border border-gray-200 p-2">
+			<h2 className="text-xl font-semibold shadow-md bg-muted border border-gray-200 p-2">
 				Document Information
 			</h2>
 
-			<div className="grid grid-cols-2 gap-6">
+			<div className="grid grid-cols-2 gap-6 px-4">
 				<div>
 					<Label htmlFor="ledger_subject">Ledger Subject</Label>
 					<Input
@@ -50,10 +50,10 @@ export default function SenderInfoStep({
 			</div>
 
 			{/* Sender Information */}
-			<h2 className="text-xl font-semibold shadow-md bg-slate-200 border border-gray-200 p-2">
+			<h2 className="text-xl font-semibold shadow-md bg-muted border border-gray-200 p-2">
 				Sender Information
 			</h2>
-			<div className="grid grid-cols-3 gap-3">
+			<div className="grid grid-cols-3 gap-3 px-4">
 				<div>
 					<Label htmlFor="sender_name">Sender Name</Label>
 					<Input
@@ -87,10 +87,10 @@ export default function SenderInfoStep({
 			</div>
 
 			{/* Carrier Information */}
-			<h2 className="text-xl font-semibold shadow-md bg-slate-200 border border-gray-200 p-2">
+			<h2 className="text-xl font-semibold shadow-md bg-muted border border-gray-200 p-2">
 				Carrier Information
 			</h2>
-			<div className="grid grid-cols-3 gap-3">
+			<div className="grid grid-cols-3 gap-3 px-4">
 				<div>
 					<Label htmlFor="carrier_person_first_name">Carrier First Name</Label>
 					<Input
@@ -128,10 +128,10 @@ export default function SenderInfoStep({
 			</div>
 
 			{/* Recipient Information */}
-			<h2 className="text-xl font-semibold shadow-md bg-slate-200 border border-gray-200 p-2">
+			<h2 className="text-xl font-semibold shadow-md bg-muted border border-gray-200 p-2">
 				Recipient Information
 			</h2>
-			<div className="grid grid-cols-2 gap-6">
+			<div className="grid grid-cols-2 gap-6 px-4">
 				<div>
 					<Label htmlFor="recipient_name">Recipient Name</Label>
 					<Input
@@ -171,10 +171,17 @@ export default function SenderInfoStep({
 			</div>
 
 			<div className="flex justify-between mt-6">
-				<Button type="button" variant="outline" onClick={onBack}>
+				<Button
+					type="button"
+					variant="outline"
+					className="px-6"
+					onClick={onBack}
+				>
 					Back
 				</Button>
-				<Button type="submit">Next</Button>
+				<Button type="submit" className="px-6">
+					Next
+				</Button>
 			</div>
 		</form>
 	);

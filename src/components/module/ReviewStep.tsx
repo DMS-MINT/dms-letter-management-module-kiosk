@@ -16,14 +16,9 @@ export default function ReviewStep({
 }: ReviewStepProps) {
 	return (
 		<div className="space-y-6">
-			<h2 className="text-2xl font-bold">Review Your Submission</h2>
+			<h2 className="text-2xl font-bold text-center">Review Your Submission</h2>
 			<div className="space-y-4">
 				<div className="flex space-x-6">
-					<div className="flex-1">
-						<ReviewSection title="Documents">
-							<FileDisplayList files={data.attachments || []} />
-						</ReviewSection>
-					</div>
 					<div className="flex-1">
 						<ReviewSection title="Sender Information">
 							<p>Name: {data.sender_name}</p>
@@ -49,13 +44,20 @@ export default function ReviewStep({
 							<p>Confidentiality: {data.metadata_confidentiality}</p>
 						</ReviewSection>
 					</div>
+					<div className="flex-1">
+						<ReviewSection title="Documents">
+							<FileDisplayList files={data.letters || []} />
+						</ReviewSection>
+					</div>
 				</div>
 			</div>
 			<div className="flex justify-between">
 				<Button type="button" variant="outline" onClick={onBack}>
 					Back
 				</Button>
-				<Button onClick={onSubmit}>Submit</Button>
+				<Button onClick={onSubmit} className="bg-green-500">
+					Submit
+				</Button>
 			</div>
 		</div>
 	);

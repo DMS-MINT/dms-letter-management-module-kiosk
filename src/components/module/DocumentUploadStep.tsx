@@ -15,7 +15,6 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/components/ui/use-toast";
 
 import type { LedgerType } from "../page";
@@ -72,6 +71,7 @@ export default function DocumentUploadStep({
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
+
 		if (!data.letters?.length && !data.attachments?.length) {
 			toast({
 				title: "Error",
@@ -85,7 +85,7 @@ export default function DocumentUploadStep({
 		setTimeout(() => {
 			setIsUploading(false);
 			onNext();
-		}, 2000);
+		}, 10000);
 	};
 
 	return (
@@ -95,10 +95,11 @@ export default function DocumentUploadStep({
 					<Label htmlFor="received_at">Received Date</Label>
 					<Input
 						id="received_at"
-						type="date"
+						type="text"
 						value={new Date().toISOString().split("T")[0]} // Set the date to now
 						onChange={(e) => updateData({ received_at: e.target.value })}
 						required
+						disabled
 					/>
 				</div>
 
@@ -221,10 +222,11 @@ export default function DocumentUploadStep({
 					</ul>
 				)}
 			</div>
-
-			<Button type="submit" className="w-full" disabled={isUploading}>
-				{isUploading ? "Uploading..." : "Next"}
-			</Button>
+			<div className="flex justify-end">
+				<Button type="submit" className="px-8" disabled={isUploading}>
+					{isUploading ? "Uploading..." : "Next"}
+				</Button>
+			</div>
 		</form>
 	);
 }

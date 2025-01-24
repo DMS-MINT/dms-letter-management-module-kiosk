@@ -55,7 +55,7 @@ const LocaleSwitcher: NextPage<LocaleSwitcherProps> = ({
 						disabled={isPending}
 						onValueChange={handleChange}
 					>
-						<SelectTrigger className="w-[100px]">
+						<SelectTrigger className="w-[100px] bg-background">
 							<SelectValue placeholder={t("LocaleSwitcher.changeLanguage")} />
 						</SelectTrigger>
 						<SelectContent>
