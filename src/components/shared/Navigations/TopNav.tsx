@@ -19,7 +19,7 @@ const TopNav = () => {
 							className="text-md font-bold text-primary hover:cursor-pointer"
 							onClick={() => route.push("/home")}
 						>
-							Kiosk Machine Admin
+							Electronic Letter Submission System
 						</div>
 					</div>
 

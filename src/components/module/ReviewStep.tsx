@@ -1,10 +1,16 @@
-import { Button } from "@/components/ui/button";
+"use client";
 
-import type { LedgerType } from "../page";
+import { useState } from "react";
+
+import { Paperclip } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+import { type LedgerType } from "@/types/ledger";
+
 import FileDisplayList from "./FileDisplay";
 
 interface ReviewStepProps {
-	data: LedgerType;
+	data: Partial<LedgerType>;
 	onSubmit: () => void;
 	onBack: () => void;
 }
@@ -14,6 +20,18 @@ export default function ReviewStep({
 	onSubmit,
 	onBack,
 }: ReviewStepProps) {
+	const [showletter, setShowLetter] = useState(true);
+	const [showAttachement, setShowAttachement] = useState(false);
+
+	const handleChangeShow = (value: string) => {
+		if (value === "letter") {
+			setShowLetter(true);
+			setShowAttachement(false);
+		} else if (value === "attachement") {
+			setShowAttachement(true);
+			setShowLetter(false);
+		}
+	};
 	return (
 		<div className="space-y-6">
 			<h2 className="text-2xl font-bold text-center">Review Your Submission</h2>
@@ -45,9 +63,36 @@ export default function ReviewStep({
 						</ReviewSection>
 					</div>
 					<div className="flex-1">
-						<ReviewSection title="Documents">
-							<FileDisplayList files={data.letters || []} />
-						</ReviewSection>
+						<div className="flex-1">
+							{showletter ? (
+								<ReviewSection title="Documents">
+									<FileDisplayList files={data.letters || []} />
+								</ReviewSection>
+							) : (
+								<Button onClick={() => handleChangeShow("letter")}>
+									Show Letter Preview
+								</Button>
+							)}
+						</div>
+						{data.attachments && data.attachments?.length > 0 && (
+							<div className="flex-1">
+								{showAttachement ? (
+									<ReviewSection title="Documents">
+										<FileDisplayList files={data.attachments || []} />
+									</ReviewSection>
+								) : (
+									<div className="flex justify-end">
+										<Button
+											onClick={() => handleChangeShow("attachement")}
+											size={"sm"}
+										>
+											<Paperclip size={15} className="mr-2" /> Show Attachement
+											Preview
+										</Button>
+									</div>
+								)}
+							</div>
+						)}
 					</div>
 				</div>
 			</div>
@@ -73,7 +118,7 @@ function ReviewSection({
 	return (
 		<div>
 			<h3 className="text-lg font-semibold mb-2">{title}</h3>
-			<div className="bg-gray-100 p-4 rounded-md">{children}</div>
+			<div className="bg-muted/40 p-4 rounded-md">{children}</div>
 		</div>
 	);
 }

@@ -2,12 +2,18 @@
 
 import { useRouter } from "next/navigation";
 
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 
-import { type ICredentials, signIn, signOut } from "@/actions/auth/action";
+import {
+	type ICredentials,
+	get_user,
+	signIn,
+	signOut,
+} from "@/actions/auth/action";
 import { useAppDispatch } from "@/hooks/storehooks";
 import useToastMutation from "@/hooks/useToastMutation";
+import { ClearCurrentUser, SetCurrentUser } from "@/lib/store/redux/usersSlice";
 
 export const useLogout = () => {
 	const router = useRouter(); // Initialize the router
@@ -23,7 +29,7 @@ export const useLogout = () => {
 			toast.dismiss();
 			toast.success("Logout... 👋🏾BYE!");
 
-			// dispatch(ClearCurrentUser());
+			dispatch(ClearCurrentUser());
 			router.push("/auth/sign-in" as `/${string}`);
 		},
 		onError: (errorMessage: string) => {
@@ -32,8 +38,26 @@ export const useLogout = () => {
 		},
 	});
 };
-export const useSignIn = () => {
+export const useFetchMe = (enable: boolean) => {
 	const dispatch = useAppDispatch();
+	return useQuery({
+		queryKey: ["getme"],
+		queryFn: async () => {
+			try {
+				const data = await get_user();
+				dispatch(SetCurrentUser(data));
+				return data;
+			} catch (error: any) {
+				toast.error(error.message);
+				throw error;
+			}
+		},
+		enabled: enable,
+	});
+};
+export const useSignIn = () => {
+	const queryClient = useQueryClient();
+
 	const router = useRouter();
 
 	return useToastMutation<ICredentials>(
@@ -44,6 +68,7 @@ export const useSignIn = () => {
 			onSuccess: (variables) => {
 				toast.success("logged in successfully");
 				router.push("/home" as `/${string}`);
+				queryClient.invalidateQueries({ queryKey: ["getme"] });
 			},
 		}
 	);

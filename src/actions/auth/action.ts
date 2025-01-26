@@ -64,7 +64,6 @@ export async function signIn(credentials: ICredentials) {
 	try {
 		console.log("credentials", credentials);
 		const response = await axiosInstance.post("auth/kiosklogin/", credentials);
-		console.log("response", response);
 
 		// Session data
 		const sessionId = response.data.session;
@@ -96,8 +95,7 @@ export async function signIn(credentials: ICredentials) {
 
 export async function signOut() {
 	try {
-		await axiosInstance.get("auth/logout/");
-
+		// await axiosInstance.get("auth/logout/");
 		cookies().set(SESSION_NAME, "", { expires: new Date(0) });
 	} catch (error: any) {
 		throw getErrorMessage(error);
@@ -107,8 +105,9 @@ export async function signOut() {
 export async function get_user() {
 	try {
 		const response = await axiosInstance.get("auth/me/");
+		console.log("get user", response);
 		const data = await response.data;
-		return data.data;
+		return data.my_profile;
 	} catch (error: any) {
 		throw getErrorMessage(error);
 	}

@@ -17,7 +17,7 @@
 		"amharic": "Amharic"
 	},
 	"Login": {
-		"loginTitle": "Kiosk Machine DMS Login",
+		"loginTitle": "ELSS Login",
 		"loginPrompt": "Sign in to your account",
 		"email": "Email",
 		"password": "Password",

@@ -3,6 +3,9 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
+// import { IMAGES } from "@/constants/files";
+import { CircleUserRound } from "lucide-react";
+
 import { useLogout } from "@/actions/Query/auth_Query/request";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/ui/custom/modeToggle";
@@ -15,21 +18,21 @@ import {
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { IMAGES } from "@/constants/files";
+import { useAppSelector } from "@/hooks/storehooks";
 
-// import { IMAGES } from "@/constants/files";
 import LocaleSwitcher from "../DropDown/LocaleSwitcher";
-import { NavigationMenuConf } from "./NavigationMenu";
 
 const MainNav = () => {
 	// 	const t = useTranslations();
 	const { mutate: logOut } = useLogout();
+	const data = useAppSelector((state) => state.users.currentUser);
 
 	const route = useRouter();
 	const handleLogout = () => {
 		logOut();
 	};
 	return (
-		<nav className="bg-muted border-b-2 border-black z-50 w-full">
+		<nav className="bg-background z-50 w-full">
 			<div className=" mx-auto px-4 sm:px-6 lg:px-8">
 				<div className="flex items-center justify-between h-14">
 					<div className="flex items-center gap-2">
@@ -41,10 +44,10 @@ const MainNav = () => {
 							onClick={() => route.push("/home")}
 						/>
 						<div
-							className="text-xl font-bold  hover:cursor-pointer"
+							className="text-md  font-bold  hover:cursor-pointer"
 							onClick={() => route.push("/dashboard/home" as `/${string}`)}
 						>
-							DMS Kiosk Machine Ledger App
+							Electronic Letter Submission System
 						</div>
 					</div>
 					{/* <NavigationMenuConf /> */}
@@ -59,22 +62,15 @@ const MainNav = () => {
 									size="icon"
 									className="rounded-full h-[45px] w-[45px] overflow-hidden "
 								>
-									{/* <Image
-										src={IMAGES.logoOnly}
-										height={40}
-										width={40}
-										alt={"logo"}
-									/> */}
+									<CircleUserRound />
 									<span className="sr-only">Toggle user menu</span>
 								</Button>
 							</DropdownMenuTrigger>
 							<DropdownMenuContent align="end" className="w-56">
 								<DropdownMenuLabel className="flex gap-2 text-sm text-customOrange">
-									{/* <span>{userRole}:</span>
-								<span>{user}</span> */}
-									Black Lion Hospital
+									{data.user_profile.full_name_en}
 								</DropdownMenuLabel>
-								<DropdownMenuSeparator />
+								{/* <DropdownMenuSeparator />
 								<DropdownMenuItem className="cursor-pointer">
 									My Account
 								</DropdownMenuItem>
@@ -84,7 +80,7 @@ const MainNav = () => {
 								</DropdownMenuItem>
 								<DropdownMenuItem className="cursor-pointer">
 									Support
-								</DropdownMenuItem>
+								</DropdownMenuItem> */}
 								<DropdownMenuSeparator />
 								<DropdownMenuItem onClick={() => handleLogout()}>
 									Logout

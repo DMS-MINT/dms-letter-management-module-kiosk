@@ -2,6 +2,10 @@
 
 import { useState } from "react";
 
+import {
+	useGetLedgerTracker,
+	useUpdateLedger,
+} from "@/actions/Query/ledger_Query/request";
 import DocumentUploadStep from "@/components/module/DocumentUploadStep";
 import SenderInfoStep from "@/components/module/InfoStep";
 import ReviewStep from "@/components/module/ReviewStep";
@@ -9,53 +13,47 @@ import Success from "@/components/shared/modal/SuccessModal";
 import { Progress } from "@/components/ui/progress";
 import { Toaster } from "@/components/ui/toaster";
 import { toast } from "@/components/ui/use-toast";
-
-export interface LedgerType {
-	letters?: File[];
-	attachments?: File[];
-	sender_name?: string;
-	sender_phone_number?: string;
-	sender_email?: string;
-	carrier_person_first_name?: string;
-	carrier_person_middle_name?: string;
-	carrier_phone_number?: string;
-	document_date?: string;
-	ledger_subject?: string;
-	ledger_description?: string;
-	tracking_number?: string;
-	ledger_status?:
-		| "PENDING"
-		| "IN_REVIEW"
-		| "APPROVED"
-		| "DELIVERED"
-		| "ARCHIVED";
-	recipient_name?: string;
-	recipient_phone_number?: string;
-	job_title?: string;
-	department?: string;
-	sector?: string;
-	received_at?: string;
-	priority?: "LOW" | "MEDIUM" | "HIGH";
-	metadata_title?: string;
-	metadata_content?: string;
-	metadata_author?: string;
-	metadata_dateCreated?: string;
-	metadata_lastModified?: string;
-	metadata_keywords?: string;
-	metadata_tags?: string;
-	metadata_fileType?: string;
-	metadata_language?: string;
-	metadata_confidentiality?:
-		| "PUBLIC"
-		| "INTERNAL"
-		| "CONFIDENTIAL"
-		| "RESTRICTED";
-}
+import { useAppSelector } from "@/hooks/storehooks";
+import { type LedgerType } from "@/types/ledger";
 
 export default function LedgerScreen() {
 	const [currentStep, setCurrentStep] = useState(1);
-	const [ledgerData, setLedgerData] = useState<LedgerType>({});
+	const [ledgerData, setLedgerData] = useState<Partial<LedgerType>>({
+		letters: [],
+		attachments: [],
+		sender_name: "",
+		sender_phone_number: "",
+		sender_email: "",
+		carrier_person_first_name: "",
+		carrier_person_middle_name: "",
+		carrier_phone_number: "",
+		document_date: "",
+		ledger_subject: "",
+		ledger_description: "",
+		tracking_number: "",
+		ledger_status: "PENDING", // Assuming PENDING is a valid default status
+		recipient_name: "",
+		recipient_phone_number: "",
+		job_title: "",
+		department: "",
+		sector: "",
+		received_at: "",
+		priority: "LOW", // Assuming LOW is a valid default priority
+		metadata_title: "",
+		metadata_content: "",
+		metadata_author: "",
+		metadata_dateCreated: "",
+		metadata_lastModified: "",
+		metadata_keywords: "",
+		metadata_tags: "",
+		metadata_file_type: "",
+		metadata_language: "",
+		metadata_confidentiality: "PUBLIC", // Assuming PUBLIC is a valid default confidentiality
+	});
+
 	const [isDialogOpen, setIsDialogOpen] = useState(false);
+	const [enable, setEnable] = useState(false);
+	const ledger = useAppSelector((state) => state.ledger.ledgerSlice);
 
 	const totalSteps = 3;
 
@@ -77,21 +75,70 @@ export default function LedgerScreen() {
 		setIsDialogOpen(true);
 		// Reset the form or navigate to a success page
 	};
+	const { data: trackerPdf, isSuccess } = useGetLedgerTracker(
+		ledger?.id,
+		enable
+	);
 
-	const handleSuccessAction = () => {
+	const { mutate: UpdateLedger } = useUpdateLedger();
+	const handleSuccessAction = async () => {
+		setEnable(true);
 		toast({
 			title: "Success",
 			description: "Succesfuly downloaded.",
 			variant: "default",
 		});
+
+		const {
+			id,
+			attachments,
+			letters,
+			metadata_confidentiality,
+			metadata_language,
+			received_at,
+			...sendData
+		} = ledgerData;
+
+		console.log(
+			"send remove data",
+			id,
+			attachments,
+			letters,
+			metadata_confidentiality,
+			metadata_language,
+			received_at
+		);
+
+		await UpdateLedger(
+			{
+				ledger_id: ledger?.id,
+				SendData: sendData,
+			},
+			{
+				onSuccess: async () => {
+					if (isSuccess) {
+						const printWindow = window.open(
+							`${process.env.NEXT_PUBLIC_API_BASE_URL}${trackerPdf}`
+						);
+						if (printWindow) {
+							printWindow.onload = () => {
+								printWindow.print();
+							};
+						}
+					}
+				},
+			}
+		);
 	};
 
 	return (
 		<>
 			<div className="container mx-auto px-4 py-8 max-w-6xl ">
-				<h1 className="text-2xl font-bold mb-6 text-center">Ledger Form</h1>
+				<h1 className="text-2xl font-bold mb-6 text-center">
+					Letter Submission Form
+				</h1>
 				<Progress value={(currentStep / totalSteps) * 100} className="mb-6" />
-				<div className="bg-white shadow-md rounded-lg p-6">
+				<div className="bg-background shadow-md rounded-lg p-6">
 					{currentStep === 1 && (
 						<DocumentUploadStep
 							data={ledgerData}
@@ -121,7 +168,7 @@ export default function LedgerScreen() {
 			<Success
 				open={isDialogOpen}
 				onClose={() => setIsDialogOpen(false)}
-				message="Your operation was successful!"
+				message="Your operation was successful! Download your Letter Tracker"
 				actionLabel="Download Tracker"
 				onAction={handleSuccessAction}
 			/>

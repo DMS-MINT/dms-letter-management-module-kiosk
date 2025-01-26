@@ -1,8 +1,10 @@
 "use client";
 
+import { useState } from "react";
+
 import { useTranslations } from "next-intl";
 
-import { useSignIn } from "@/actions/Query/auth_Query/request";
+import { useFetchMe, useSignIn } from "@/actions/Query/auth_Query/request";
 import { Button } from "@/components/ui/button";
 import {
 	Card,
@@ -19,11 +21,12 @@ import { Label } from "@/components/ui/label";
 export function LoginForm() {
 	const t = useTranslations("Login");
 	const { mutate: signIn } = useSignIn(); // Use the signIn mutation
+	const [enable, setEnable] = useState<boolean>(false);
 
+	const { data: mydata } = useFetchMe(enable);
 	const handleSubmit = async (event: any) => {
 		event.preventDefault();
 
-		console.log("signIn");
 		const email = event.target.email.value;
 		const password = event.target.password.value;
 
@@ -32,7 +35,15 @@ export function LoginForm() {
 			password,
 		};
 
-		signIn(data);
+		signIn(data, {
+			onSuccess: () => {
+				setEnable(true);
+			},
+			onError: (error: any) => {
+				console.error("Sign-in failed:", error);
+				// Handle the error, e.g., show a toast notification
+			},
+		});
 	};
 
 	return (

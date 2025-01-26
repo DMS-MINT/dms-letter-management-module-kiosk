@@ -21,7 +21,10 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
 					{children}
 				</div>
 				<footer className="bg-primary text-primary-foreground text-sm p-2 text-center">
-					<p>@ DMS Kiosk Machine Minsitry Innovation and Technology</p>
+					<p>
+						@ 2025GC, Electronic Letter Submission System (ELSS) Minsitry of
+						Innovation and Technology
+					</p>
 				</footer>
 			</div>
 		</GeneralShell>

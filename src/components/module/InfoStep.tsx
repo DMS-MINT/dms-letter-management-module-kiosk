@@ -1,11 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-
-import type { LedgerType } from "../page";
+import { type LedgerType } from "@/types/ledger";
 
 interface SenderInfoStepProps {
-	data: LedgerType;
+	data: Partial<LedgerType>;
 	updateData: (newData: Partial<LedgerType>) => void;
 	onNext: () => void;
 	onBack: () => void;
@@ -25,13 +24,16 @@ export default function SenderInfoStep({
 	return (
 		<form onSubmit={handleSubmit} className="space-y-8">
 			{/* Document Information */}
-			<h2 className="text-xl font-semibold shadow-md bg-muted border border-gray-200 p-2">
+			<h2 className="text-md font-semibold shadow-md bg-muted p-2">
 				Document Information
 			</h2>
 
 			<div className="grid grid-cols-2 gap-6 px-4">
 				<div>
-					<Label htmlFor="ledger_subject">Ledger Subject</Label>
+					<Label htmlFor="ledger_subject">
+						Letter Subject
+						<span className="text-red-500 ml-2">*</span>
+					</Label>
 					<Input
 						id="ledger_subject"
 						value={data.ledger_subject || ""}
@@ -50,12 +52,15 @@ export default function SenderInfoStep({
 			</div>
 
 			{/* Sender Information */}
-			<h2 className="text-xl font-semibold shadow-md bg-muted border border-gray-200 p-2">
+			<h2 className="text-md font-semibold shadow-md bg-muted p-2">
 				Sender Information
 			</h2>
 			<div className="grid grid-cols-3 gap-3 px-4">
 				<div>
-					<Label htmlFor="sender_name">Sender Name</Label>
+					<Label htmlFor="sender_name">
+						Sender Name
+						<span className="text-red-500 ml-2">*</span>
+					</Label>
 					<Input
 						id="sender_name"
 						value={data.sender_name || ""}
@@ -64,7 +69,10 @@ export default function SenderInfoStep({
 					/>
 				</div>
 				<div>
-					<Label htmlFor="sender_phone_number">Sender Phone Number</Label>
+					<Label htmlFor="sender_phone_number">
+						Sender Phone Number
+						<span className="text-red-500 ml-2">*</span>
+					</Label>
 					<Input
 						id="sender_phone_number"
 						value={data.sender_phone_number || ""}
@@ -81,18 +89,20 @@ export default function SenderInfoStep({
 						type="email"
 						value={data.sender_email || ""}
 						onChange={(e) => updateData({ sender_email: e.target.value })}
-						required
 					/>
 				</div>
 			</div>
 
 			{/* Carrier Information */}
-			<h2 className="text-xl font-semibold shadow-md bg-muted border border-gray-200 p-2">
+			<h2 className="text-md font-semibold shadow-md bg-muted p-2">
 				Carrier Information
 			</h2>
 			<div className="grid grid-cols-3 gap-3 px-4">
 				<div>
-					<Label htmlFor="carrier_person_first_name">Carrier First Name</Label>
+					<Label htmlFor="carrier_person_first_name">
+						Carrier First Name
+						<span className="text-red-500 ml-2">*</span>
+					</Label>
 					<Input
 						id="carrier_person_first_name"
 						value={data.carrier_person_first_name || ""}
@@ -115,7 +125,10 @@ export default function SenderInfoStep({
 					/>
 				</div>
 				<div>
-					<Label htmlFor="carrier_phone_number">Carrier Phone Number</Label>
+					<Label htmlFor="carrier_phone_number">
+						Carrier Phone Number
+						<span className="text-red-500 ml-2">*</span>
+					</Label>
 					<Input
 						id="carrier_phone_number"
 						value={data.carrier_phone_number || ""}
@@ -128,12 +141,15 @@ export default function SenderInfoStep({
 			</div>
 
 			{/* Recipient Information */}
-			<h2 className="text-xl font-semibold shadow-md bg-muted border border-gray-200 p-2">
+			<h2 className="text-md font-semibold shadow-md bg-muted  p-2">
 				Recipient Information
 			</h2>
 			<div className="grid grid-cols-2 gap-6 px-4">
 				<div>
-					<Label htmlFor="recipient_name">Recipient Name</Label>
+					<Label htmlFor="recipient_name">
+						Recipient Name
+						<span className="text-red-500 ml-2">*</span>
+					</Label>
 					<Input
 						id="recipient_name"
 						value={data.recipient_name || ""}
@@ -149,7 +165,6 @@ export default function SenderInfoStep({
 						onChange={(e) =>
 							updateData({ recipient_phone_number: e.target.value })
 						}
-						required
 					/>
 				</div>
 				<div>
