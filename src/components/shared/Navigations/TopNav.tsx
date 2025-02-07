@@ -19,12 +19,12 @@ const TopNav = () => {
 							className="text-md font-bold text-primary hover:cursor-pointer"
 							onClick={() => route.push("/home")}
 						>
-							Electronic Letter Submission System
+							E-Letter Submission Portal (ELSP)
 						</div>
 					</div>
 
 					<div className="mr-0 flex items-center gap-2 md:mr-2">
-						<LocaleSwitcher />
+						{/* <LocaleSwitcher /> */}
 
 						<ModeToggle />
 					</div>

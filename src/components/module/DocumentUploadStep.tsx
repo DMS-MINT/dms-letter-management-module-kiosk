@@ -174,12 +174,12 @@ export default function DocumentUploadStep({
 		<form onSubmit={handleSubmit} className="space-y-6">
 			<div className="grid grid-cols-3 gap-6 mb-4">
 				<div>
-					<Label htmlFor="received_at">Received Date</Label>
+					<Label htmlFor="written_at">Received Date</Label>
 					<Input
-						id="received_at"
+						id="written_at"
 						type="text"
 						value={new Date().toISOString().split("T")[0]}
-						onChange={(e) => updateData({ received_at: e.target.value })}
+						onChange={(e) => updateData({ written_at: e.target.value })}
 						required
 						disabled
 					/>
@@ -327,7 +327,7 @@ export default function DocumentUploadStep({
 
 			<div className="flex justify-end">
 				<Button type="submit" className="px-8" disabled={isUploading}>
-					{isUploading ? "Uploading..." : "Save and Next"}
+					{isUploading ? "Uploading..." : "Save and Continue"}
 				</Button>
 			</div>
 		</form>

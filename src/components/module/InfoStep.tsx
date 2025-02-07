@@ -21,6 +21,8 @@ export default function SenderInfoStep({
 		onNext();
 	};
 
+	console.log("Datais", data);
+
 	return (
 		<form onSubmit={handleSubmit} className="space-y-8">
 			{/* Document Information */}

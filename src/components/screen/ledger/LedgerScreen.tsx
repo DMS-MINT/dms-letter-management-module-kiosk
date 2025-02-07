@@ -2,10 +2,7 @@
 
 import { useState } from "react";
 
-import {
-	useGetLedgerTracker,
-	useUpdateLedger,
-} from "@/actions/Query/ledger_Query/request";
+import { useUpdateLedger } from "@/actions/Query/ledger_Query/request";
 import DocumentUploadStep from "@/components/module/DocumentUploadStep";
 import SenderInfoStep from "@/components/module/InfoStep";
 import ReviewStep from "@/components/module/ReviewStep";
@@ -18,33 +15,36 @@ import { type LedgerType } from "@/types/ledger";
 
 export default function LedgerScreen() {
 	const [currentStep, setCurrentStep] = useState(1);
+	const submitedLedger = useAppSelector(
+		(state) => state.submitted.submitedData
+	);
 	const [ledgerData, setLedgerData] = useState<Partial<LedgerType>>({
 		letters: [],
 		attachments: [],
-		sender_name: "",
+		sender_name: submitedLedger?.sender_name || "",
 		sender_phone_number: "",
 		sender_email: "",
 		carrier_person_first_name: "",
 		carrier_person_middle_name: "",
 		carrier_phone_number: "",
-		document_date: "",
-		ledger_subject: "",
-		ledger_description: "",
+		// document_date: "",
+		ledger_subject: submitedLedger?.ledger_subject || "",
+		// ledger_description: "",
 		tracking_number: "",
 		ledger_status: "PENDING", // Assuming PENDING is a valid default status
-		recipient_name: "",
+		recipient_name: submitedLedger?.recipient_name || "",
 		recipient_phone_number: "",
 		job_title: "",
 		department: "",
-		sector: "",
-		received_at: "",
+		// sector: "",
+		written_at: "",
 		priority: "LOW", // Assuming LOW is a valid default priority
-		metadata_title: "",
-		metadata_content: "",
-		metadata_author: "",
-		metadata_dateCreated: "",
-		metadata_lastModified: "",
-		metadata_keywords: "",
+		// metadata_title: "",
+		// metadata_content: "",
+		// metadata_author: "",
+		// metadata_dateCreated: "",
+		// metadata_lastModified: "",
+		metadata_keywords: submitedLedger?.metadata_keywords || "",
 		metadata_tags: "",
 		metadata_file_type: "",
 		metadata_language: "",
@@ -52,8 +52,8 @@ export default function LedgerScreen() {
 	});
 
 	const [isDialogOpen, setIsDialogOpen] = useState(false);
-	const [enable, setEnable] = useState(false);
-	const ledger = useAppSelector((state) => state.ledger.ledgerSlice);
+	// const [enable, setEnable] = useState(false);
+	// const ledger = useAppSelector((state) => state.ledger.ledgerSlice);
 
 	const totalSteps = 3;
 
@@ -75,14 +75,14 @@ export default function LedgerScreen() {
 		setIsDialogOpen(true);
 		// Reset the form or navigate to a success page
 	};
-	const { data: trackerPdf, isSuccess } = useGetLedgerTracker(
-		ledger?.id,
-		enable
-	);
+	// const { data: trackerPdf, isSuccess } = useGetLedgerTracker(
+	// 	ledger?.id,
+	// 	enable
+	// );
 
 	const { mutate: UpdateLedger } = useUpdateLedger();
 	const handleSuccessAction = async () => {
-		setEnable(true);
+		// setEnable(true);
 		toast({
 			title: "Success",
 			description: "Succesfuly downloaded.",
@@ -95,7 +95,10 @@ export default function LedgerScreen() {
 			letters,
 			metadata_confidentiality,
 			metadata_language,
-			received_at,
+			tracking_number,
+			job_title, // you can remove this line
+			department, // you can remove this line
+			written_at,
 			...sendData
 		} = ledgerData;
 
@@ -103,22 +106,30 @@ export default function LedgerScreen() {
 			"send remove data",
 			id,
 			attachments,
+			job_title,
+			department,
 			letters,
+			tracking_number,
 			metadata_confidentiality,
 			metadata_language,
-			received_at
+			written_at
 		);
-
+		// TODO this is the submission
+		// I have remove the job Titile and department if it is the problem gen aleseram
 		await UpdateLedger(
 			{
-				ledger_id: ledger?.id,
+				ledger_id: submitedLedger?.id,
 				SendData: sendData,
 			},
 			{
 				onSuccess: async () => {
-					if (isSuccess) {
+					if (submitedLedger?.ledger_pdf) {
 						const printWindow = window.open(
-							`${process.env.NEXT_PUBLIC_API_BASE_URL}${trackerPdf}`
+							`${process.env.NEXT_PUBLIC_API_BASE_URL}/${submitedLedger?.ledger_pdf}`
+						);
+						console.log(
+							"pdf",
+							`${process.env.NEXT_PUBLIC_API_BASE_URL}/${submitedLedger?.ledger_pdf}`
 						);
 						if (printWindow) {
 							printWindow.onload = () => {
@@ -168,7 +179,7 @@ export default function LedgerScreen() {
 			<Success
 				open={isDialogOpen}
 				onClose={() => setIsDialogOpen(false)}
-				message="Your operation was successful! Download your Letter Tracker"
+				message={`Your operation was successful! Your Tracking number will be ${submitedLedger?.tracking_number} `}
 				actionLabel="Download Tracker"
 				onAction={handleSuccessAction}
 			/>
