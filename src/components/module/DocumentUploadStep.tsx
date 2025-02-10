@@ -3,6 +3,7 @@
 import { useCallback, useState } from "react";
 
 import { FileText, Image as ImageIcons, Upload, X } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useDropzone } from "react-dropzone";
 
 import { useAddLedger } from "@/actions/Query/ledger_Query/request";
@@ -31,7 +32,7 @@ export default function DocumentUploadStep({
 	onNext,
 }: DocumentUploadStepProps) {
 	const [isUploading, setIsUploading] = useState(false);
-
+	const t = useTranslations("LedgerForm");
 	const onDrop = useCallback(
 		(acceptedFiles: File[], fileType: "letters" | "attachments") => {
 			const validFiles = acceptedFiles.filter(
@@ -174,7 +175,9 @@ export default function DocumentUploadStep({
 		<form onSubmit={handleSubmit} className="space-y-6">
 			<div className="grid grid-cols-3 gap-6 mb-4">
 				<div>
-					<Label htmlFor="received_at">Received Date</Label>
+					<Label htmlFor="received_at">
+						{t("fields.document_upload.received_at")}
+					</Label>
 					<Input
 						id="received_at"
 						type="text"
@@ -187,7 +190,7 @@ export default function DocumentUploadStep({
 
 				<div>
 					<Label htmlFor="metadata_language">
-						Language
+						{t("fields.document_upload.language")}
 						<span className="text-red-500 ml-2">*</span>
 					</Label>
 					<Select
@@ -198,14 +201,20 @@ export default function DocumentUploadStep({
 							<SelectValue placeholder="Select language" />
 						</SelectTrigger>
 						<SelectContent>
-							<SelectItem value="English">English</SelectItem>
-							<SelectItem value="Amharic">Amharic</SelectItem>
+							<SelectItem value="English">
+								{t("fields.document_upload.english")}
+							</SelectItem>
+							<SelectItem value="Amharic">
+								{t("fields.document_upload.amharic")}
+							</SelectItem>
 						</SelectContent>
 					</Select>
 				</div>
 
 				<div>
-					<Label htmlFor="metadata_confidentiality">Confidentiality</Label>
+					<Label htmlFor="metadata_confidentiality">
+						{t("fields.document_upload.confidentiality")}
+					</Label>
 					<Select
 						value={data.metadata_confidentiality || ""}
 						onValueChange={(value) =>
@@ -216,13 +225,23 @@ export default function DocumentUploadStep({
 						}
 					>
 						<SelectTrigger id="metadata_confidentiality">
-							<SelectValue placeholder="Select confidentiality" />
+							<SelectValue
+								placeholder={t("fields.document_upload.confidentiality")}
+							/>
 						</SelectTrigger>
 						<SelectContent>
-							<SelectItem value="PUBLIC">Public</SelectItem>
-							<SelectItem value="INTERNAL">Internal</SelectItem>
-							<SelectItem value="CONFIDENTIAL">Confidential</SelectItem>
-							<SelectItem value="RESTRICTED">Restricted</SelectItem>
+							<SelectItem value="PUBLIC">
+								{t("fields.document_upload.public")}
+							</SelectItem>
+							<SelectItem value="INTERNAL">
+								{t("fields.document_upload.internal")}
+							</SelectItem>
+							<SelectItem value="CONFIDENTIAL">
+								{t("fields.document_upload.confidential")}
+							</SelectItem>
+							<SelectItem value="RESTRICTED">
+								{t("fields.document_upload.restricted")}
+							</SelectItem>
 						</SelectContent>
 					</Select>
 				</div>
@@ -230,21 +249,21 @@ export default function DocumentUploadStep({
 
 			<div>
 				<h3 className="text-lg font-semibold mb-2">
-					Upload Letters
+					{t("fields.document_upload.upload_letters")}
 					<span className="text-red-500 ml-2">*</span>
 				</h3>
 				<div
 					{...getLetterRootProps()}
 					className="border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors hover:border-primary"
-					aria-label="Upload letters"
+					aria-label={t("fields.document_upload.upload_letters")}
 				>
 					<input {...getLetterInputProps()} />
 					<Upload className="mx-auto h-12 w-12" />
 					<p className="mt-2 text-sm text-muted-foreground">
-						Drag & drop letter files here, or click to select files
+						{t("fields.document_upload.drag_drop")}
 					</p>
 					<p className="text-xs text-muted-foreground mt-1">
-						(PDF or images up to 5MB each)
+						{t("fields.document_upload.file_size")}
 					</p>
 				</div>
 				{data.letters && data.letters.length > 0 && (
@@ -279,7 +298,10 @@ export default function DocumentUploadStep({
 			</div>
 
 			<div>
-				<h3 className="text-lg font-semibold mb-2">Upload Attachments</h3>
+				<h3 className="text-lg font-semibold mb-2">
+					{t("fields.document_upload.upload_attachments")}
+				</h3>
+
 				<div
 					{...getAttachmentRootProps()}
 					className="border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors hover:border-primary"
@@ -288,10 +310,10 @@ export default function DocumentUploadStep({
 					<input {...getAttachmentInputProps()} />
 					<Upload className="mx-auto h-12 w-12" />
 					<p className="mt-2 text-sm text-muted-foreground">
-						Drag & drop attachment files here, or click to select files
+						{t("fields.document_upload.drag_drop")}
 					</p>
 					<p className="text-xs text-muted-foreground mt-1">
-						(PDF or images up to 5MB each)
+						{t("fields.document_upload.file_size")}
 					</p>
 				</div>
 				{data.attachments && data.attachments.length > 0 && (
@@ -327,7 +349,9 @@ export default function DocumentUploadStep({
 
 			<div className="flex justify-end">
 				<Button type="submit" className="px-8" disabled={isUploading}>
-					{isUploading ? "Uploading..." : "Save and Next"}
+					{isUploading
+						? t("fields.document_upload.uploading")
+						: t("fields.document_upload.save_next")}
 				</Button>
 			</div>
 		</form>

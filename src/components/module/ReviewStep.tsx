@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 import { Paperclip } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
 import { type LedgerType } from "@/types/ledger";
@@ -32,52 +33,88 @@ export default function ReviewStep({
 			setShowLetter(false);
 		}
 	};
+	const t = useTranslations("LedgerForm.fields");
 	return (
 		<div className="space-y-6">
-			<h2 className="text-2xl font-bold text-center">Review Your Submission</h2>
+			<h2 className="text-2xl font-bold text-center">
+				{t("review_submission.title")}
+			</h2>
 			<div className="space-y-4">
 				<div className="flex space-x-6">
 					<div className="flex-1">
-						<ReviewSection title="Sender Information">
-							<p>Name: {data.sender_name}</p>
-							<p>Phone: {data.sender_phone_number}</p>
-							<p>Email: {data.sender_email}</p>
+						<ReviewSection title={t("review_submission.sender_info")}>
+							<p>
+								{t("review_submission.name")}: {data.sender_name}
+							</p>
+							<p>
+								{t("review_submission.phone")}: {data.sender_phone_number}
+							</p>
+							<p>
+								{t("review_submission.email")}: {data.sender_email}
+							</p>
 						</ReviewSection>
-						<ReviewSection title="Carrier Information">
-							<p>First Name: {data.carrier_person_first_name}</p>
-							<p>Middle Name: {data.carrier_person_middle_name}</p>
-							<p>Phone: {data.carrier_phone_number}</p>
+						<ReviewSection title={t("review_submission.carrier_information")}>
+							<p>
+								{t("review_submission.first_name")}:{" "}
+								{data.carrier_person_first_name}
+							</p>
+							<p>
+								{t("review_submission.middle_name")}:{" "}
+								{data.carrier_person_middle_name}
+							</p>
+							<p>
+								{t("review_submission.phone")}: {data.carrier_phone_number}
+							</p>
 						</ReviewSection>
-						<ReviewSection title="Recipient Information">
-							<p>Name: {data.recipient_name}</p>
-							<p>Phone: {data.recipient_phone_number}</p>
-							<p>Job Title: {data.job_title}</p>
-							<p>Department: {data.department}</p>
-							<p>Received At: {data.received_at}</p>
+						<ReviewSection title={t("review_submission.recipient_info")}>
+							<p>
+								{t("review_submission.name")}: {data.recipient_name}
+							</p>
+							<p>
+								{t("review_submission.phone")}: {data.recipient_phone_number}
+							</p>
+							<p>
+								{t("review_submission.job_title")}: {data.job_title}
+							</p>
+							<p>
+								{t("review_submission.department")}: {data.department}
+							</p>
+							<p>
+								{t("review_submission.received_at")}: {data.received_at}
+							</p>
 						</ReviewSection>
-						<ReviewSection title="Ledger Details">
-							<p>Subject: {data.ledger_subject}</p>
-							<p>Keywords: {data.metadata_keywords}</p>
-							<p>Language: {data.metadata_language}</p>
-							<p>Confidentiality: {data.metadata_confidentiality}</p>
+						<ReviewSection title={t("review_submission.ledger_details")}>
+							<p>
+								{t("review_submission.subject")}: {data.ledger_subject}
+							</p>
+							<p>
+								{t("review_submission.keywords")}: {data.metadata_keywords}
+							</p>
+							<p>
+								{t("review_submission.language")}: {data.metadata_language}
+							</p>
+							<p>
+								{t("review_submission.confidentiality")}:{" "}
+								{data.metadata_confidentiality}
+							</p>
 						</ReviewSection>
 					</div>
 					<div className="flex-1">
 						<div className="flex-1">
 							{showletter ? (
-								<ReviewSection title="Documents">
+								<ReviewSection title={t("review_submission.documents")}>
 									<FileDisplayList files={data.letters || []} />
 								</ReviewSection>
 							) : (
 								<Button onClick={() => handleChangeShow("letter")}>
-									Show Letter Preview
+									{t("review_submission.show_letter_preview")}
 								</Button>
 							)}
 						</div>
 						{data.attachments && data.attachments?.length > 0 && (
 							<div className="flex-1">
 								{showAttachement ? (
-									<ReviewSection title="Documents">
+									<ReviewSection title={t("review_submission.documents")}>
 										<FileDisplayList files={data.attachments || []} />
 									</ReviewSection>
 								) : (
@@ -86,8 +123,8 @@ export default function ReviewStep({
 											onClick={() => handleChangeShow("attachement")}
 											size={"sm"}
 										>
-											<Paperclip size={15} className="mr-2" /> Show Attachement
-											Preview
+											<Paperclip size={15} className="mr-2" />{" "}
+											{t("review_submission.show_attachment_preview")}
 										</Button>
 									</div>
 								)}
@@ -98,14 +135,89 @@ export default function ReviewStep({
 			</div>
 			<div className="flex justify-between">
 				<Button type="button" variant="outline" onClick={onBack}>
-					Back
+					{t("actions.back")}
 				</Button>
 				<Button onClick={onSubmit} className="bg-green-500">
-					Submit
+					{t("actions.submit")}
 				</Button>
 			</div>
 		</div>
 	);
+
+	// return (
+	// 	<div className="space-y-6">
+	// 		<h2 className="text-2xl font-bold text-center">Review Your Submission</h2>
+	// 		<div className="space-y-4">
+	// 			<div className="flex space-x-6">
+	// 				<div className="flex-1">
+	// 					<ReviewSection title={t("sender_info")}>
+	// 						<p>Name: {data.sender_name}</p>
+	// 						<p>Phone: {data.sender_phone_number}</p>
+	// 						<p>Email: {data.sender_email}</p>
+	// 					</ReviewSection>
+	// 					<ReviewSection title={t("carrier_information")}>
+	// 						<p>First Name: {data.carrier_person_first_name}</p>
+	// 						<p>Middle Name: {data.carrier_person_middle_name}</p>
+	// 						<p>Phone: {data.carrier_phone_number}</p>
+	// 					</ReviewSection>
+	// 					<ReviewSection title={t("recipient_info")}>
+	// 						<p>Name: {data.recipient_name}</p>
+	// 						<p>Phone: {data.recipient_phone_number}</p>
+	// 						<p>Job Title: {data.job_title}</p>
+	// 						<p>Department: {data.department}</p>
+	// 						<p>Received At: {data.received_at}</p>
+	// 					</ReviewSection>
+	// 					<ReviewSection title={t("ledger_details")}>
+	// 						<p>Subject: {data.ledger_subject}</p>
+	// 						<p>Keywords: {data.metadata_keywords}</p>
+	// 						<p>Language: {data.metadata_language}</p>
+	// 						<p>Confidentiality: {data.metadata_confidentiality}</p>
+	// 					</ReviewSection>
+	// 				</div>
+	// 				<div className="flex-1">
+	// 					<div className="flex-1">
+	// 						{showletter ? (
+	// 							<ReviewSection title="Documents">
+	// 								<FileDisplayList files={data.letters || []} />
+	// 							</ReviewSection>
+	// 						) : (
+	// 							<Button onClick={() => handleChangeShow("letter")}>
+	// 								Show Letter Preview
+	// 							</Button>
+	// 						)}
+	// 					</div>
+	// 					{data.attachments && data.attachments?.length > 0 && (
+	// 						<div className="flex-1">
+	// 							{showAttachement ? (
+	// 								<ReviewSection title="Documents">
+	// 									<FileDisplayList files={data.attachments || []} />
+	// 								</ReviewSection>
+	// 							) : (
+	// 								<div className="flex justify-end">
+	// 									<Button
+	// 										onClick={() => handleChangeShow("attachement")}
+	// 										size={"sm"}
+	// 									>
+	// 										<Paperclip size={15} className="mr-2" /> Show Attachement
+	// 										Preview
+	// 									</Button>
+	// 								</div>
+	// 							)}
+	// 						</div>
+	// 					)}
+	// 				</div>
+	// 			</div>
+	// 		</div>
+	// 		<div className="flex justify-between">
+	// 			<Button type="button" variant="outline" onClick={onBack}>
+	// 				Back
+	// 			</Button>
+	// 			<Button onClick={onSubmit} className="bg-green-500">
+	// 				Submit
+	// 			</Button>
+	// 		</div>
+	// 	</div>
+	// );
 }
 
 function ReviewSection({

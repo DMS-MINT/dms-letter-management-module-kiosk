@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 
 // import { IMAGES } from "@/constants/files";
 import { CircleUserRound } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { useLogout } from "@/actions/Query/auth_Query/request";
 import { Button } from "@/components/ui/button";
@@ -31,6 +32,7 @@ const MainNav = () => {
 	const handleLogout = () => {
 		logOut();
 	};
+	const t = useTranslations("LedgerForm.fields.nav_bar");
 	return (
 		<nav className="bg-background z-50 w-full">
 			<div className=" mx-auto px-4 sm:px-6 lg:px-8">
@@ -40,14 +42,20 @@ const MainNav = () => {
 							src={IMAGES.mint}
 							height={60}
 							width={70}
-							alt={"logo"}
+							alt={t("logoAlt")}
 							onClick={() => route.push("/home")}
 						/>
 						<div
-							className="text-md  font-bold  hover:cursor-pointer"
-							onClick={() => route.push("/dashboard/home" as `/${string}`)}
+							className="text-md font-bold border border-blue-500 hover:border-blue-700 hover:bg-blue-100 transition-colors duration-200 cursor-pointer p-2 rounded-md"
+							onClick={() => route.push("/trackletter" as `/${string}`)}
 						>
-							Electronic Letter Submission System
+							{t("trackLetter")}
+						</div>
+						<div
+							className="text-md  font-bold  hover:cursor-pointer"
+							onClick={() => route.push("/home" as `/${string}`)}
+						>
+							{t("electronicLetterSystem")}
 						</div>
 					</div>
 					{/* <NavigationMenuConf /> */}
@@ -63,7 +71,7 @@ const MainNav = () => {
 									className="rounded-full h-[45px] w-[45px] overflow-hidden "
 								>
 									<CircleUserRound />
-									<span className="sr-only">Toggle user menu</span>
+									<span className="sr-only">{t("toggleUserMenu")}</span>
 								</Button>
 							</DropdownMenuTrigger>
 							<DropdownMenuContent align="end" className="w-56">
@@ -83,7 +91,7 @@ const MainNav = () => {
 								</DropdownMenuItem> */}
 								<DropdownMenuSeparator />
 								<DropdownMenuItem onClick={() => handleLogout()}>
-									Logout
+									{t("logout")}
 								</DropdownMenuItem>
 							</DropdownMenuContent>
 						</DropdownMenu>

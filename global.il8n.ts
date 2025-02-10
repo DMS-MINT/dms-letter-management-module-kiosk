@@ -1,10 +1,10 @@
 import type { LocalePrefix, Pathnames } from "next-intl/routing";
 
 // @see i18n-ally.localesPaths in settings.json
-export const i18nTheme = "default" as "default" | "toorax";
+export const i18nTheme = "default" as "default";
 
 // Define the supported locales: Amharic and English
-export const locales = ["am", "en-US"] as const;
+export const locales: string[] = ["am", "en-US", "or"];
 
 export const localePrefix: LocalePrefix<typeof locales> = "always";
 
@@ -17,16 +17,19 @@ export const pathnames: Pathnames<typeof locales> = {
 	"/donate": {
 		"en-US": "/donate",
 		am: "/ለመችላት",
+		or: "/kennaa",
 	},
 	"/pathnames": {
 		"en-US": "/pathnames",
 		am: "/መንገዶች",
+		or: "/kennaa",
 	},
 };
 
 export const labels = {
 	"en-US": "English",
 	am: "Amharic",
+	or: "Oromiffa",
 };
 
 export const localeFlags: {
@@ -34,4 +37,5 @@ export const localeFlags: {
 } = {
 	"en-US": "🇺🇸",
 	am: "🇪🇹",
+	or: "🇪🇹",
 };

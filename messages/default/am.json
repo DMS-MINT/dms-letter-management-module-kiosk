@@ -19,7 +19,8 @@
 	"LocaleSwitcher": {
 		"changeLanguage": "ቋንቋን ለውጥ",
 		"english": "እንግሊዝኛ",
-		"amharic": "አማርኛ"
+		"amharic": "አማርኛ",
+		"oromiffa": "ኦሮምኛ"
 	},
 	"Login": {
 		"loginTitle": "ኪዮስክ ማሽን  ዲኤምስ መግቢያ",
@@ -38,10 +39,13 @@
 	},
 
 	"LedgerForm": {
+		"letter_submission_title": "ደብዳቤ አስገባ ቅጽ",
 		"carrier_information": "የአምጪዉ መረጃ",
 		"DocumentUpload": "ሰነድ መጫኛ",
 		"DocumentInfo": "የሰነድ መረጃ",
 		"recipient_info": "የተቀባይ መረጃ",
+		"sender_info": "ላኪ መረጃ",
+		"ledger_details": "የምዝገባ ዝርዝሮች",
 		"fields": {
 			"carrier_person_first_name": {
 				"label": "የአምጪዉ የመጀመሪያ ስም",
@@ -55,17 +59,127 @@
 				"description": "የአምጪዉን የአባት ስም ያስገቡ",
 				"error": "የአምጪዉ የአባት ስም ያስፈልጋል"
 			},
-			"carrier_person_last_name": {
-				"label": "የአምጪዉ የአያት ስም",
-				"placeholder": "የአምጪዉን የአያት ስም ያስገቡ",
-				"description": "የአምጪዉን የአያት ስም ያስገቡ",
-				"error": "የአምጪዉ የአያት ስም ያስፈልጋል"
-			},
 			"carrier_phone_number": {
 				"label": "የአምጪዉ ስልክ ቁጥር",
 				"placeholder": "የአምጪዉን ስልክ ቁጥር ያስገቡ",
 				"description": "የአምጪዉን ስልክ ቁጥር ያስገቡ",
 				"error": "የአምጪዉ ስልክ ቁጥር ያስፈልጋል"
+			},
+			"sender_name": {
+				"label": "ላኪ ስም",
+				"placeholder": "ላኪ ስም ያስገቡ",
+				"description": "ላኪ ስም ያስገቡ",
+				"error": "ላኪ ስም ማስገባት አስፈላጊ ነው"
+			},
+			"sender_phone_number": {
+				"label": "ላኪ ስልክ ቁጥር",
+				"placeholder": "ላኪ ስልክ ቁጥር ያስገቡ",
+				"description": "ላኪ ስልክ ቁጥር ያስገቡ",
+				"error": "ላኪ ስልክ ቁጥር ማስገባት አስፈላጊ ነው"
+			},
+			"sender_email": {
+				"label": "ላኪ ኢሜል",
+				"placeholder": "ላኪ ኢሜል ያስገቡ",
+				"description": "ላኪ ኢሜል ያስገቡ",
+				"error": "ላኪ ኢሜል ማስገባት አስፈላጊ ነው"
+			},
+			"sender_address": {
+				"label": "ላኪ አድራሻ",
+				"placeholder": "ላኪ አድራሻ ያስገቡ",
+				"description": "ላኪ አድራሻ ያስገቡ",
+				"error": "ላኪ አድራሻ ማስገባት አስፈላጊ ነው"
+			},
+			"sender_type": {
+				"label": "ላኪ አይነት",
+				"placeholder": "ላኪ አይነት ይምረጡ",
+				"description": "ላኪ ተመን እንደ ግለሰብ ወይም እንደ ድርጅት ይምረጡ",
+				"error": "ላኪ አይነት ማስገባት አስፈላጊ ነው",
+				"options": {
+					"INDIVIDUAL": "ግለሰብ",
+					"ORGANIZATION": "ድርጅት"
+				}
+			},
+			"recipient_name": {
+				"label": "የተቀባይ ስም",
+				"placeholder": "የተቀባይ ስም ያስገቡ",
+				"description": "የተቀባይ ስም ያስገቡ",
+				"error": "የተቀባይ ስም ያስፈልጋል"
+			},
+			"recipient_phone_number": {
+				"label": "የተቀባይ ስልክ ቁጥር",
+				"placeholder": "የተቀባይ ስልክ ቁጥር ያስገቡ",
+				"description": "የተቀባይ ስልክ ቁጥር ያስገቡ",
+				"error": "የተቀባይ ስልክ ቁጥር ያስፈልጋል"
+			},
+			"recipient_email": {
+				"label": "የተቀባይ ኢሜይል",
+				"placeholder": "የተቀባይ ኢሜይል ያስገቡ",
+				"description": "የተቀባይ ኢሜይል ያስገቡ",
+				"error": "የተቀባይ ኢሜይል ያስፈልጋል"
+			},
+			"job_title": {
+				"label": "የስራ መደበኛ ስም",
+				"placeholder": "የስራ መደበኛ ስም ያስገቡ",
+				"description": "የስራ መደበኛ ስም ያስገቡ",
+				"error": "የስራ መደበኛ ስም ያስፈልጋል"
+			},
+			"department": {
+				"label": "ዲፓርትመንት",
+				"placeholder": "ዲፓርትመንት ያስገቡ",
+				"description": "ዲፓርትመንት ያስገቡ",
+				"error": "ዲፓርትመንት ያስፈልጋል"
+			},
+			"actions": {
+				"back": "ተመለስ",
+				"next": "ቀጣይ",
+				"submit": "አስገባ"
+			},
+			"review_submission": {
+				"title": "የመረጃ ማረጋገጫ",
+				"sender_info": "የላኪው መረጃ",
+				"carrier_information": "የተላላፊ መረጃ",
+				"recipient_info": "የተቀባይ መረጃ",
+				"ledger_details": "የሌጀር ዝርዝር",
+				"documents": "ሰነዶች",
+				"show_letter_preview": "የደብዳቤ ቅድመ እይታ አሳይ",
+				"show_attachment_preview": "የይዘት ቅድመ እይታ አሳይ",
+				"name": "ስም",
+				"phone": "ስልክ",
+				"email": "ኢሜይል",
+				"first_name": "የመጀመሪያ ስም",
+				"middle_name": "የአባት ስም",
+				"job_title": "የስራ መደብ",
+				"department": "መስሪያ ቤት",
+				"received_at": "የተቀበለበት ጊዜ",
+				"subject": "ርዕስ",
+				"keywords": "ቁልፍ ቃላት",
+				"language": "ቋንቋ",
+				"confidentiality": "ምስጢርነት"
+			},
+			"nav_bar": {
+				"logoAlt": "ሎጎ",
+				"trackLetter": "ደብዳቤ ተከታተል",
+				"electronicLetterSystem": "ስርዓት መልእክት ኤሌክትሮኒክ",
+				"toggleUserMenu": "መንደል ተጠቃሚ ማቀዝቀዣ",
+				"logout": "ውጣ"
+			},
+			"track_letter": {
+				"title": "ደብዳቤ መከታተያ",
+				"placeholder": "የመከታተያ ቁጥር ያስገቡ",
+				"followButton": "ደብዳቤዬን ይከታተሉ",
+				"currentLocation": "ደብዳቤዎ በዚህ ይገኛል:",
+				"resultFormat": {
+					"table": "ሰንጠረዥ",
+					"graph": "ግራፍ"
+				},
+				"tableHeaders": {
+					"letter_id": "የደብዳቤ መለያ",
+					"issued_date": "የተለቀቀበት ቀን",
+					"current_recipient": "አሁን ያለው ተቀባይ/ቦታ",
+					"date_received": "የተቀበለበት ቀን",
+					"shared_with": "ከማን ጋር ተጋርቷል",
+					"forwarded_to": "ለማን ተላልፏል"
+				}
 			},
 			"carrier_type": {
 				"label": "የአስተላላፊ አይነት",
@@ -106,19 +220,38 @@
 				"label": "ደብዳቤዎች",
 				"placeholder": "ደብዳቤዎችን ያስገቡ",
 				"description": "ደብዳቤዎችን ያስገቡ",
-				"error": "ደብዳቤዎች ያስፈልጋሉ"
+				"error": "ደብዳቤዎች ያስፈልጋሉ",
+				"fileTypeError": "የማይፈቀድ የፋይል አይነት ነው። እባኮትን ትክክለኛ የፋይል አይነት ያስገቡ።"
 			},
 			"attachments": {
 				"label": "አባሪዎች",
 				"placeholder": "አባሪዎችን ያስገቡ",
 				"description": "አባሪዎችን ያስገቡ",
-				"error": "አባሪዎች ያስፈልጋሉ"
+				"error": "አባሪዎች ያስፈልጋሉ",
+				"fileTypeError": "የማይፈቀድ የፋይል አይነት ነው። እባኮትን ትክክለኛ የፋይል አይነት ያስገቡ።"
 			},
 			"additional_message": {
 				"label": "ተጨማሪ መልእክት",
 				"placeholder": "ተጨማሪ መልእክት ያስገቡ",
 				"description": "ተጨማሪ መልእክት ያስገቡ",
 				"error": "ተጨማሪ መልእክት ያስፈልጋል"
+			},
+			"document_upload": {
+				"received_at": "የተቀበለበት ቀን",
+				"language": "ቋንቋ",
+				"english": "እንግሊዝኛ",
+				"amharic": "አማርኛ",
+				"confidentiality": "መረጃ ሚስጥራዊነት",
+				"upload_letters": "ደብዳቤ አስገባ",
+				"drag_drop": "የደብዳቤ ፋይሎችን እዚህ ጎትትዎ ወይም ፋይሎችን ለመምረጥ ጠቅ ያድርጉ",
+				"file_size": "(PDF ወይም ምስሎች እያንዳንዳቸው እስከ 5MB ድረስ)",
+				"upload_attachments": "ማያያዣዎች አስገባ",
+				"uploading": "በመስተንግዶ ላይ...",
+				"save_next": "አስቀምጥና ቀጥሎ ሂድ",
+				"public": "ሕዝብ",
+				"internal": "ውስጣዊ",
+				"confidential": "ማስጠበቅ",
+				"restricted": "የተገደበ"
 			},
 			"document_type": {
 				"label": "የሰነድ አይነት",
@@ -177,8 +310,8 @@
 			},
 			"external_reference_id": {
 				"label": "የውጪ ማጣቀሻ መታወቂያ",
-				"placeholder": "የውጪ ማጣቀሻ መታወቂያ ያስገቡ",
-				"description": "የውጪ ማጣቀሻ መታወቂያ ያስገቡ",
+				"placeholder": "የውጪ ማጣቀሻ መታወቂያ ያስገቡ *እባክዎ ካለ ያስገቡ",
+				"description": "የውጪ ማጣቀሻ መታወቂያ ያስገቡ *እባክዎ ካለ ያስገቡ",
 				"error": "የውጪ ማጣቀሻ መታወቂያ የተሳሳተ ነው"
 			},
 			"delivery_channel": {
@@ -227,36 +360,7 @@
 				"description": "መነሻ ስርዓት ያስገቡ",
 				"error": "መነሻ ስርዓት ያስፈልጋል"
 			},
-			"recipient_name": {
-				"label": "የተቀባይ ስም",
-				"placeholder": "የተቀባይ ስም ያስገቡ",
-				"description": "የተቀባይ ስም ያስገቡ",
-				"error": "የተቀባይ ስም ያስፈልጋል"
-			},
-			"recipient_phone_number": {
-				"label": "የተቀባይ ስልክ ቁጥር",
-				"placeholder": "የተቀባይ ስልክ ቁጥር ያስገቡ",
-				"description": "የተቀባይ ስልክ ቁጥር ያስገቡ",
-				"error": "የተቀባይ ስልክ ቁጥር ያስፈልጋል"
-			},
-			"recipient_email": {
-				"label": "የተቀባይ ኢሜይል",
-				"placeholder": "የተቀባይ ኢሜይል ያስገቡ",
-				"description": "የተቀባይ ኢሜይል ያስገቡ",
-				"error": "የተቀባይ ኢሜይል ያስፈልጋል"
-			},
-			"job_title": {
-				"label": "የስራ መደበኛ ስም",
-				"placeholder": "የስራ መደበኛ ስም ያስገቡ",
-				"description": "የስራ መደበኛ ስም ያስገቡ",
-				"error": "የስራ መደበኛ ስም ያስፈልጋል"
-			},
-			"department": {
-				"label": "ዲፓርትመንት",
-				"placeholder": "ዲፓርትመንት ያስገቡ",
-				"description": "ዲፓርትመንት ያስገቡ",
-				"error": "ዲፓርትመንት ያስፈልጋል"
-			},
+
 			"sector": {
 				"label": "ዘርፍ",
 				"placeholder": "ዘርፍ ያስገቡ",

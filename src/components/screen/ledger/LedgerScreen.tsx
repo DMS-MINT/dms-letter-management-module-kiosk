@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 
+import { useTranslations } from "next-intl";
+
 import {
 	useGetLedgerTracker,
 	useUpdateLedger,
@@ -56,7 +58,7 @@ export default function LedgerScreen() {
 	const ledger = useAppSelector((state) => state.ledger.ledgerSlice);
 
 	const totalSteps = 3;
-
+	const t = useTranslations("LedgerForm");
 	const updateLedgerData = (newData: Partial<LedgerType>) => {
 		setLedgerData((prevData) => ({ ...prevData, ...newData }));
 	};
@@ -135,7 +137,7 @@ export default function LedgerScreen() {
 		<>
 			<div className="container mx-auto px-4 py-8 max-w-6xl ">
 				<h1 className="text-2xl font-bold mb-6 text-center">
-					Letter Submission Form
+					{t("letter_submission_title")}
 				</h1>
 				<Progress value={(currentStep / totalSteps) * 100} className="mb-6" />
 				<div className="bg-background shadow-md rounded-lg p-6">

@@ -18,6 +18,7 @@ const intlBaseMiddleware = createMiddleware({
 	pathnames,
 });
 
+console.log("Locales:", locales);
 // Wrap the `intlMiddleware` to fit into the `stackMiddlewares` pattern
 export const withIntl: MiddlewareFactory = (next) => {
 	return async (request: NextRequest, _next: NextFetchEvent) => {

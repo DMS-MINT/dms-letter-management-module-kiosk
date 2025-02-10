@@ -23,7 +23,11 @@ const navigationMap = [
 		route: "/dashboard/ledger",
 		alternateRoutes: ["/en-US/dashboard/ledger", "/am/dashboard/ledger"],
 	},
-
+	{
+		label: "Track Letter",
+		route: "/trackletter",
+		alternateRoutes: ["/en-US/trackletter", "/am/trackletter"],
+	},
 	// Add more navigation items here as needed
 ];
 
