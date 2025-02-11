@@ -109,7 +109,7 @@ export default function LetterTracking() {
 	const currentRecipient =
 		filteredResults.length > 0 ? filteredResults[0].current_recipient : "N/A";
 	return (
-		<div className="p-6 mx-80 bg-gray-50 rounded-lg shadow-md">
+		<div className="p-6 mx-80 bg-gray-50 dark:bg-gray-900  rounded-lg shadow-md">
 			<h1 className="text-2xl font-bold mb-4">{t("title")}</h1>
 			{/* Centered Input Fields, Dropdown, and Button */}
 			<div className="flex flex-col items-center gap-4 mb-6">
@@ -139,11 +139,11 @@ export default function LetterTracking() {
 
 			{/* Display "Your letter is at" with better styling & animation */}
 			{trackingNumber && filteredResults.length > 0 && (
-				<div className="mt-4 p-4 bg-blue-100 border border-blue-400 rounded-lg shadow-md text-center transition-all duration-300">
-					<p className="text-lg font-semibold text-gray-700">
+				<div className="mt-4 p-4 bg-blue-100 dark:bg-blue-900 border border-blue-400 dark:border-blue-600 rounded-lg shadow-md text-center transition-all duration-300">
+					<p className="text-lg font-semibold text-gray-700 dark:text-gray-300">
 						{t("currentLocation")}
 					</p>
-					<span className="text-xl font-bold text-blue-600 block mt-1">
+					<span className="text-xl font-bold text-blue-600 dark:text-blue-400 block mt-1">
 						{filteredResults[0].current_recipient}
 					</span>
 				</div>

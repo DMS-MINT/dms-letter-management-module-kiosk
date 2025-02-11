@@ -36,32 +36,41 @@ export function DataChart<T>({ data, xKey, yKeys }: DataChartProps<T>) {
 
 					<XAxis
 						dataKey={xKey as string}
-						stroke="#6B7280"
-						tick={{ fill: "#6B7280" }}
+						stroke="#6B7280" // light mode axis color
+						tick={{ fill: "#6B7280" }} // light mode tick color
+						className="dark:stroke-gray-300 dark:tick:text-gray-300" // dark mode axis color
 						label={{
-							value: t(String(xKey)), // ✅ Corrected
+							value: t(String(xKey)),
 							position: "insideBottom",
 							dy: 10,
+							className: "dark:text-white", // Dark mode label text color
 						}}
 					/>
 
-					<YAxis stroke="#6B7280" tick={{ fill: "#6B7280" }} />
-
+					<YAxis
+						stroke="#6B7280" // light mode axis color
+						tick={{ fill: "#6B7280" }} // light mode tick color
+						className="dark:stroke-gray-300 dark:tick:text-gray-300" // dark mode axis color
+					/>
 					<Tooltip
 						contentStyle={{
-							backgroundColor: "#FFFFFF",
-							border: "1px solid #E5E7EB",
-							borderRadius: "8px",
-							boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
-							fontSize: "14px",
+							backgroundColor: "#FFFFFF", // light mode background
+							border: "1px solid #E5E7EB", // light mode border
+							borderRadius: "8px", // rounded corners
+							boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", // soft shadow
+							fontSize: "14px", // text size
 						}}
-						formatter={(value, name) => [value, t(name)]} // ✅ Fixed
+						wrapperClassName="dark:bg-gray-800 dark:border-gray-600 dark:text-white" // dark mode classes for wrapper
+						formatter={(value, name) => [value, t(name)]} // formatted content
 					/>
 
 					<Legend
 						wrapperStyle={{ paddingTop: "10px" }}
+						className="dark:text-white" // Dark mode legend text color
 						formatter={(value) => (
-							<span className="text-sm text-gray-700">{t(value)}</span>
+							<span className="text-sm text-gray-700 dark:text-gray-300">
+								{t(value)}
+							</span>
 						)} // ✅ Fixed
 					/>
 
