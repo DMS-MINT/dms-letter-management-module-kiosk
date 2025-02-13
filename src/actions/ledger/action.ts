@@ -48,7 +48,7 @@ export const update_ledger = async ({
 		console.log("update response", response);
 		return {
 			ok: true,
-			message: response.data?.message || "Create A letter",
+			message: response.data?.message || "ደብዳቤ በተሳካ ሁኔታ ገቢ ተደርጓል።",
 			data: response.data,
 		};
 	} catch (error) {
