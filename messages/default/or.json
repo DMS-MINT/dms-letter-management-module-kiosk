@@ -119,40 +119,6 @@
 				}
 			},
 
-			"carrier_type": {
-				"label": "Akkaataa odeeffannoo/Dhimmicha kandhufee",
-				"placeholder": "Akkaataa odeeffannoo/Dhimmicha kandhufee Galchi",
-				"description": "Akkaataa odeeffannoo/Dhimmicha kandhufee Galchi",
-				"error": "Akkaataan odeeffannoo/Dhimmicha kandhufee barbaachisaadha",
-				"options": {
-					"Individual": "Dhuunfaa",
-					"Organization": "Dhaabbata"
-				}
-			},
-			"organization_type": {
-				"label": "Akkaataa Jaarmiyaa",
-				"placeholder": "Akkaataa Jaarmiyaa Galchi",
-				"description": "Akkaataa Jaarmiyaa galchi",
-				"error": "Akkaataa Jaarmiyaa nibarbaachisa",
-				"options": {
-					"private": "Dhuunfaa",
-					"EthioPosta": "Poostaa Itoophiyaa",
-					"DHL": "DHL",
-					"Other": "Kan biraa"
-				}
-			},
-			"carrier_organization_id": {
-				"label": "Waraqaa eenyummaa Dhaabbata",
-				"placeholder": "Waraqaa eenyummaa Dhaabbata odeeffannoo/Dhimmicha kanfidee Galchi",
-				"description": "Waraqaa eenyummaa Dhaabbata odeeffannoo/Dhimmicha kanfidee Galchi",
-				"error": "ID Dhaabbata odeeffannoo/Dhimmicha ኒ barbaachisa"
-			},
-			"carrier_plate_number": {
-				"label": "odeeffannoo kanfidee Lakkoofsa Gabatee",
-				"placeholder": "Lakkoofsa Gabatee odeeffannoo/Dhimmicha kanfidee Galchi",
-				"description": "Lakkoofsa Gabatee odeeffannoo/Dhimmicha kanfidee Galchi",
-				"error": "Lakkoofsa Gabatee odeeffannoo/Dhimmicha kanfidee nibarbaachisa"
-			},
 			"letters": {
 				"label": "Xalayaa",
 				"placeholder": "Xalayaa Galchi",
@@ -165,18 +131,7 @@
 				"description": "Dabalata Galchi",
 				"error": "Dabalata galchun nibarbaachisa"
 			},
-			"additional_message": {
-				"label": "Ergaa Dabalataa",
-				"placeholder": "Ergaa Dabalataa Galchi",
-				"description": "Ergaa Dabalataa Galchi",
-				"error": "Ergaa dabalataa nibarbaachisa"
-			},
-			"document_type": {
-				"label": "Gosa Galmee/Sanadaa ",
-				"placeholder": "Gosa Galmee Galchi",
-				"description": "Gosa Galmee/Sanadaa  Galchi",
-				"error": "Gosa Galmee barbaachisadhaa"
-			},
+			
 			"document_upload": {
 				"received_at": "Guyyaa argamuu",
 				"language": "Afaan",
@@ -194,107 +149,8 @@
 				"confidential": "Dhoksaa",
 				"restricted": "Haddhaa"
 			},
-			"document_date": {
-				"label": "Guyyaa Galmee/Sanadaa ",
-				"placeholder": "Guyyaa Galmee/Sanadaa  Galchi",
-				"description": "Guyyaa Galmee/Sanadaa  Galchi",
-				"error": "Guyyaa Galmee/Sanadaa nibarbaachisa"
-			},
-			"document_owner": {
-				"label": "Abbaa Galmee/Sanadaa  ",
-				"placeholder": "Abbaa Galmee/Sanadaa  Galchi",
-				"description": "Abbaa Galmee/Sanadaa  Galchi",
-				"error": "Abbaa Galmee/Sanadaa nibarbaachisa"
-			},
-			"ledger_id": {
-				"label": "ID galmee",
-				"placeholder": "ID galmee galchi",
-				"description": "ID galmee galchi",
-				"error": "ID galmee nibarbaachisa"
-			},
-			"ledger_subject": {
-				"label": "Dhimmicha Galmee",
-				"placeholder": " Dhimmicha Galmee Galchi",
-				"description": " Dhimmicha Galmee Galchi",
-				"error": "Dhimmicha Galmee nibarbaachisa"
-			},
-			"ledger_description": {
-				"label": "Ibsa Galmee",
-				"placeholder": "Ibsa Galmee Galchi",
-				"description": "Ibsa Galmee Galchi",
-				"error": "Ibsi Galmeebarbaachisaadha"
-			},
-			"ledger_type": {
-				"label": " Gosa Galmee ",
-				"placeholder": "Gosa Galmee Galchi",
-				"description": "Gosa Galmee Galchi",
-				"error": "Gosa Galmee barbaachisadha"
-			},
-			"delivery_medium": {
-				"label": "Kaaraa Ergaamuun",
-				"placeholder": "Kaaraa Ergaamuun Galchi",
-				"description": "Kaaraa Ergaamuun a Galchi",
-				"error": "Kaaraa Ergaamuun  nibarbaachisa",
-				"options": {
-					"RIDE": "RIDE",
-					"POSTA": "poostaa",
-					"PRIVATE": "DHUUNFAA",
-					"MOTOR": "MOTORA",
-					"OTHER": "KAN BIRAA"
-				}
-			},
-			"external_reference_id": {
-				"label": "ID Wabii Alaa",
-				"placeholder": "ID Wabii Alaa",
-				"description": "ID Wabii Alaa Galchi",
-				"error": "ID Wabii Alaa sirrii miti"
-			},
-			"delivery_channel": {
-				"label": "Kaaraa Ergaamun ",
-				"placeholder": "Kaaraa Ergaamun Galchaa",
-				"description": "Kaaraa Ergaamun  Galchaa",
-				"error": "Kaaraa Ergaamun  barbaachisaadhaa",
-				"options": {
-					"INPERSON": "DHAABBATA GALMEE ERGUU ",
-					"DELIVERY": "DHAABBATA GALMEE GEESUU"
-				}
-			},
-			"delivery_organization": {
-				"label": "Dhaabbata Ergaamun",
-				"placeholder": "Dhaabbata Ergaamun Galchi",
-				"description": "Dhaabbata Ergaamun Galchi",
-				"error": "Dhaabbanni Geejjibaa barbaachisa"
-			},
-			"tracking_number": {
-				"label": "Lakkoofsa Hordoffii",
-				"placeholder": "Lakkoofsa Hordoffii Galchi",
-				"description": "Lakkoofsa Hordoffii Galchi",
-				"error": "Lakkoofsa Hordoffii nibarbaachisaa"
-			},
-			"expected_delivery_date": {
-				"label": "Guyyaa Galma akaaga'uu  Eegamu",
-				"placeholder": "Guyyaa Galma akaaga'uu  Eegamu Galchi",
-				"description": "Guyyaa Guyyaa Galma akaagau  Galchi",
-				"error": "Guyyaa Geejjibaa Eegamu barbaachisa"
-			},
-			"delivery_status": {
-				"label": "Haala Eergatii",
-				"placeholder": "Haala Eergatii Galchi",
-				"description": "Haala Eergatii Galchi",
-				"error": "Haala Eergatii Galchuun barbaachisa"
-			},
-			"meta_tags": {
-				"label": "Meta Tags",
-				"placeholder": "Meta Tags Galchi",
-				"description": "Meta Tags Galchi",
-				"error": "Meta Tags barbaachisaadhaa "
-			},
-			"source_system": {
-				"label": "sirna iirraa madda",
-				"placeholder": "sirna iirraa  madda Galchi",
-				"description": "sirna iirraa  madda Galchi",
-				"error": "sirna iirraa  madda barbaachisaadhaa"
-			},
+			
+			
 			"recipient_name": {
 				"label": " Maqaa fudhataa ",
 				"placeholder": " Maqaa fudhataa Galchi",
@@ -326,12 +182,7 @@
 				"description": "Qajeelcha Galchi ",
 				"error": " Qajeelcha barbaachisaadha "
 			},
-			"sector": {
-				"label": "Damee",
-				"placeholder": "Damee Galchi",
-				"description": "Damee Galchi ",
-				"error": "Dameen barbaachisaadhaa"
-			},
+			
 			"sender_name": {
 				"label": "Maqaa Ergaa",
 				"placeholder": "Maqaa Ergaa Galchi",
