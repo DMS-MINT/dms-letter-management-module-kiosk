@@ -181,7 +181,7 @@
 					"forwarded_to": "ለማን ተላልፏል"
 				}
 			},
-		
+
 			"letters": {
 				"label": "ደብዳቤዎች",
 				"placeholder": "ደብዳቤዎችን ያስገቡ",
@@ -196,7 +196,7 @@
 				"error": "አባሪዎች ያስፈልጋሉ",
 				"fileTypeError": "የማይፈቀድ የፋይል አይነት ነው። እባኮትን ትክክለኛ የፋይል አይነት ያስገቡ።"
 			},
-			
+
 			"document_upload": {
 				"received_at": "የተቀበለበት ቀን",
 				"language": "ቋንቋ",
@@ -214,14 +214,13 @@
 				"confidential": "ማስጠበቅ",
 				"restricted": "የተገደበ"
 			},
-			
+
 			"source_system": {
 				"label": "መነሻ ስርዓት",
 				"placeholder": "መነሻ ስርዓት ያስገቡ",
 				"description": "መነሻ ስርዓት ያስገቡ",
 				"error": "መነሻ ስርዓት ያስፈልጋል"
 			}
-
 		}
 	}
 }

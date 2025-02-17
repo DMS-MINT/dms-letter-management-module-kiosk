@@ -131,7 +131,7 @@
 				"description": "Dabalata Galchi",
 				"error": "Dabalata galchun nibarbaachisa"
 			},
-			
+
 			"document_upload": {
 				"received_at": "Guyyaa argamuu",
 				"language": "Afaan",
@@ -149,8 +149,7 @@
 				"confidential": "Dhoksaa",
 				"restricted": "Haddhaa"
 			},
-			
-			
+
 			"recipient_name": {
 				"label": " Maqaa fudhataa ",
 				"placeholder": " Maqaa fudhataa Galchi",
@@ -182,7 +181,7 @@
 				"description": "Qajeelcha Galchi ",
 				"error": " Qajeelcha barbaachisaadha "
 			},
-			
+
 			"sender_name": {
 				"label": "Maqaa Ergaa",
 				"placeholder": "Maqaa Ergaa Galchi",
